@@ -9,7 +9,7 @@ func main() {
 	tick := time.Tick(1000 * time.Millisecond)
 	count := 1
 	for range tick {
-		fmt.Println("KATO " + fmt.Sprint(count))
+		fmt.Println("Test " + fmt.Sprint(count))
 		count++
 	}
 }
