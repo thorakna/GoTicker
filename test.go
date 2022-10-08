@@ -1,1 +1,1 @@
-New go file
+package test
