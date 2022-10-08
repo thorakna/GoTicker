@@ -9,7 +9,7 @@ func main() {
 	tick := time.Tick(1000 * time.Millisecond)
 	count := 1
 	for range tick {
-		fmt.Println("Tick update " + fmt.Sprint(count))
+		fmt.Println("[TEST] Tick update " + fmt.Sprint(count))
 		count++
 	}
 }
