@@ -1,5 +1,8 @@
 image: golang:latest
 
+services:
+  - alpine/git:latest 
+
 stages:
   - test
   - build
