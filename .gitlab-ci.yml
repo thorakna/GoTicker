@@ -1,6 +1,6 @@
 stages:
-  - build
   - test
+  - build
 
 build-code-job:
   stage: build
