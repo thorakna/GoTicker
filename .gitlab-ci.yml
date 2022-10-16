@@ -1,9 +1,5 @@
 image: golang:latest
 
-before_script:
-  - apt-get update -qq && apt-get install -y -qq git
-  - git --version
-
 stages:
   - test
   - build
@@ -12,6 +8,8 @@ stages:
 format:
   stage: test
   script:
+    - apt-get update -qy && apt-get upgrade -qy    # This line used for updating OS repositories
+    - apt-get install -y git
     - go fmt $(go list ./... | grep -v /vendor/)
     - go vet $(go list ./... | grep -v /vendor/)
     - go test -race $(go list ./... | grep -v /vendor/)
