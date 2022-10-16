@@ -1,4 +1,4 @@
-image: golang:latest
+image: alpine/git:latest
 
 before_script:
   - export PATH=$PATH:/usr/local/bin
