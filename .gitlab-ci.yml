@@ -1,5 +1,12 @@
 image: golang:latest
 
+before_script:
+  - export PATH=$PATH:/usr/local/bin
+
+stages:
+  - test
+  - build
+
 job1:
   stage: test
   script:
