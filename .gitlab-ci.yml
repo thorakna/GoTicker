@@ -1,23 +1,8 @@
 image: alpine/git:latest
 
-before_script:
-  - export PATH=$PATH:/usr/local/bin
-
 stages:
   - test
   - build
-
-job1:
-  stage: test
-  script:
-    - apt-get update -qy && apt-get upgrade -qy    # This line used for updating OS repositories
-    - apt-get install -y git                       # This command used for installing Git
-    - docker --version
-    - git --version
-  tags:
-    - ldc
-  only:
-    - develop
 
 format:
   stage: test
