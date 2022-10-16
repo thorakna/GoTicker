@@ -1,13 +1,7 @@
 image: golang:latest
 
-stages:
-  - install
-  - test
-  - build
-  - deploy
-
 job1:
-  stage: install
+  stage: test
   script:
     - apt-get update -qy && apt-get upgrade -qy    # This line used for updating OS repositories
     - apt-get install -y git                       # This command used for installing Git
