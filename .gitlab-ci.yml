@@ -1,20 +1,28 @@
+image: golang:latest
+
 stages:
   - test
   - build
+  - deploy
 
-build-code-job:
+format:
+  stage: test
+  script:
+    - go fmt $(go list ./... | grep -v /vendor/)
+    - go vet $(go list ./... | grep -v /vendor/)
+    - go test -race $(go list ./... | grep -v /vendor/)
+
+compile:
   stage: build
   script:
-    - echo "Check the ruby version, then build some Ruby project files:"
-    - ruby -v
-    - rake
+    - mkdir -p mybinaries
+    - go build -o mybinaries ./...
+  artifacts:
+    paths:
+      - mybinaries
 
-test-code-job1:
-  stage: test
-  script:
-    - echo "If the files are built successfully, test some files with one command:"
+deploy:
+  stage: deploy
+  script: echo "Define your deployment script!"
+  environment: production
 
-test-code-job2:
-  stage: test
-  script:
-    - echo "If the files are built successfully, test other files with a different command:"
