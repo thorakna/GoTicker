@@ -23,9 +23,12 @@ jobs:
 
     - name: Test
       run: go test -v ./...
-  
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-    - run: echo "This job will run after test is complete"
-  
+    - uses: actions/download-artifact@v3
+      id: download
+      with:
+        name: 'my-artifact'
+        path: path/to/artifacts
+
+    - name: 'Echo download path'
+      run: echo ${{steps.download.outputs.download-path}}
+
