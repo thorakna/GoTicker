@@ -43,17 +43,21 @@ jobs:
         path: build/
     - name: List files
       run: ls -R
-    - name: SSHPASS Github Action
+    - name: scp-deployer
       # You may pin to the exact commit or the version.
-      # uses: matheusvanzan/sshpass-action@1e96f05518c2e99d17587ee85fa4d64c1612d0f1
-      uses: matheusvanzan/sshpass-action@v1
+      # uses: siva1024/scp-deployer@595af961c23bfad4cc7c1bcdfe9b57fb840e7cb9
+      uses: siva1024/scp-deployer@v1.0
       with:
-        # SSHPASS host
+        # ssh remote host
         host: 89.252.140.247
-        # SSHPASS username
+        # ssh remote user
         username: root
-        # SSHPASS password
+        # ssh remote port
+        port: 22
+        # ssh remote password
         password: ${{ secrets.SERVERPASS }}
-        # SSHPASS commands to run
-        run: sshpass scp build/experimental root@89.252.140.247:/home/
+        # source to copy from
+        source: build/experimental
+        # destination to download on server
+        target: /home/
 
