@@ -30,13 +30,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Cd root
-      run: cd
-    - name: List
-      run: ls
     - name: Download artifact
       uses: actions/download-artifact@v3
       with:
         name: production
-        path: ./...
+        path: experimental
 
