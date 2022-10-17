@@ -23,3 +23,9 @@ jobs:
 
     - name: Test
       run: go test -v ./...
+  
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo "This job will run after test is complete"
+  
