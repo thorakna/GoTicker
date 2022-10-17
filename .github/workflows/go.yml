@@ -41,15 +41,13 @@ jobs:
       with:
         name: experimental
         path: build/
-    - name: List files
-      run: ls -R
     - name: copy file via ssh password
       uses: appleboy/scp-action@master
       with:
-        host: 89.252.140.247
-        username: root
+        host: ${{ secrets.SERVERIP }}
+        username: ${{ secrets.SERVERUSERNAME }}
         password: ${{ secrets.SERVERPASS }}
         port: 22
-        source: "build/experimental"
+        source: "build/"
         target: "/home/"
 
