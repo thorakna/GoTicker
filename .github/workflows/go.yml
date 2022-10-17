@@ -24,6 +24,12 @@ jobs:
     - name: Test
       run: go test -v ./...
       
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3.1.0
+      with:
+        name: experimental
+        path: build/
+      
   deploy:
     name: Deploy #Job name
     needs: build # The build job has to run successfully for the deploy job to run
