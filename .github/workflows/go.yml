@@ -27,7 +27,7 @@ jobs:
       id: download
       with:
         name: 'experimental'
-        path: ./...
+        path: ./
 
     - name: 'Echo download path'
       run: echo ${{steps.download.outputs.download-path}}
