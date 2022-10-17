@@ -41,4 +41,10 @@ jobs:
       with:
         name: experimental
         path: build/
+    - name: List files
+      run: ls -R
+    - name: Install sshpass
+      run: apt install sshpass
+    - name: Copy file to Server
+      run: sshpass -p "${{ secrets.SERVERPASS }}" scp build/experimental root@89.252.140.247:/home/
 
