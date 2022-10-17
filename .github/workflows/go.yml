@@ -30,6 +30,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: List files
+      run: ls -R
     - name: Download artifact
       uses: actions/download-artifact@v3
       with:
