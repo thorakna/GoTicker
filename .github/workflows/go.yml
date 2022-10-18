@@ -67,6 +67,7 @@ jobs:
         script: |
           cd /home/build
           sudo chmod 755 experimental
+          ./experimental -service stop
           ./experimental -service install
           ./experimental -service start
 
