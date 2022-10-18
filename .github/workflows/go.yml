@@ -42,13 +42,13 @@ jobs:
       with:
         name: experimental
         path: build/
-    - name: SSH - Kill old executable
-      uses: appleboy/ssh-action@v0.1.5
-      with:
-        host: ${{ secrets.SERVERIP }}
-        username: ${{ secrets.SERVERUSERNAME }}
-        password: ${{ secrets.SERVERPASS }}
-        script: pkill experimental
+#    - name: SSH - Kill old executable
+#      uses: appleboy/ssh-action@v0.1.5
+#      with:
+#        host: ${{ secrets.SERVERIP }}
+#        username: ${{ secrets.SERVERUSERNAME }}
+#        password: ${{ secrets.SERVERPASS }}
+#        script: pkill experimental
     - name: SCP - Copy binary file
       uses: appleboy/scp-action@master
       with:
