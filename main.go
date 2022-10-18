@@ -39,7 +39,7 @@ func (p *program) run() error {
 	for {
 		select {
 		case tm := <-ticker.C:
-			logger.Infof("Still running at %v...", tm)
+			logger.Infof("Hey I'm still running at %v...", tm)
 		case <-p.exit:
 			ticker.Stop()
 			return nil
@@ -67,7 +67,7 @@ func main() {
 	options["Restart"] = "on-success"
 	options["SuccessExitStatus"] = "1 2 8 SIGKILL"
 	svcConfig := &service.Config{
-		Name:        "GoServiceExampleLogging",
+		Name:        "GoTickerService",
 		DisplayName: "Go Service Example for Logging",
 		Description: "This is an example Go service that outputs log messages.",
 		Dependencies: []string{
