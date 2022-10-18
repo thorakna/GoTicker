@@ -37,6 +37,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Test Print Secrets
+      run: echo ${{ secrets.SERVERUSERNAME }}
     - name: Download artifact
       uses: actions/download-artifact@v3.0.0
       with:
