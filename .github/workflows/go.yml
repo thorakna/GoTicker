@@ -1,0 +1,63 @@
+name: Go
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+    name: Build stage
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v3
+      with:
+        go-version: 1.18
+
+    - name: Build
+      run: go build -o ./build/experimental
+
+    - name: Test
+      run: go test -v ./...
+      
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3.1.0
+      with:
+        name: experimental
+        path: build/
+      
+  deploy:
+    name: Deploy stage
+    needs: build # The build job has to run successfully for the deploy job to run
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Download artifact
+      uses: actions/download-artifact@v3.0.0
+      with:
+        name: experimental
+        path: build/
+    - name: Copy binary file via ssh password
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.SERVERIP }}
+        username: ${{ secrets.SERVERUSERNAME }}
+        password: ${{ secrets.SERVERPASS }}
+        port: 22
+        source: "build/"
+        target: "/home/"
+    - name: SSH Remote Commands
+      uses: appleboy/ssh-action@v0.1.5
+      with:
+        host: ${{ secrets.SERVERIP }}
+        username: ${{ secrets.SERVERUSERNAME }}
+        password: ${{ secrets.SERVERPASS }}
+        script: # optional
+        # stop script after first failure
+        script_stop: # optional
+
