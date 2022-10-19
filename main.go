@@ -39,7 +39,7 @@ func (p *program) run() error {
 	for {
 		select {
 		case tm := <-ticker.C:
-			logger.Infof("Hey Onur, this is a PR test. I'm still running at %v...", tm)
+			logger.Infof("Hey Onur, I'm still running at %v...", tm)
 		case <-p.exit:
 			ticker.Stop()
 			return nil
